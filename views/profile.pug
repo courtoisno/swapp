@@ -1,0 +1,89 @@
+html
+	head
+		title='Swapp'
+		link(href="/css/materialize.min.css" type="text/css" rel ="stylesheet")
+		link(href="/css/main.css" type="text/css" rel ="stylesheet")
+
+
+	body
+		nav
+			div(class="nav-wrapper")
+				a Profile page
+				a(href='/')
+					span Home
+				a(href='/logout')
+					span Log out
+
+
+		div(class="row")
+			div(class="col s12")
+
+				h1(id="hello") Hello, #{user.username}! <br>
+
+				h2 My Infos
+				p #{user.email} 
+				p #{user.firstname} #{user.lastname}
+
+				h2 My wishlist
+				if user.Wants
+					each want in user.Wants
+						p #{want.Offer.title}
+						p #{want.Offer.about}
+					
+				else
+					p Wish list empty!
+
+				h2 My offers
+
+				div(class="col s12")
+
+					each offer in user.Offers
+						div(class="offer")
+							p #{offer.title}:
+							p #{offer.about}
+							div(class="waves-effect waves-teal btn-flat") Edit
+							div(class="waves-effect waves-teal btn-flat del-offer" data-id="{id}") Delete
+
+
+
+
+				h2 create your offer here :
+				div(class="row")
+					form(class="col s12" method='POST' action='/offering')
+						div(class="row")
+							div(class="input-field col s12")
+						label(for="title" class="active") Title:
+							input(id="title" value="Shaving foam" class="validate" name='title' type='text' required)
+						div(class="row")
+							div(class="input-field col s12")
+						label(for="textarea1") About: <br>
+							textarea(id="textarea1" class="materialize-textarea" name='about' type='password' required)
+							input(type='submit' required)
+
+					form(method='post' enctype action="/file-upload")
+						div(class="file-field input-field")
+							div(class="btn")
+								span Pics
+								input(type="file" multiple name="pic" accept="image/*")
+						div(class="file-path-wrapper")
+							input(class="file-path validate" type="text" placeholder="upload one or more images")
+						div(class="btn")
+								span Pics	
+								
+
+
+	script(src="/js/jquery-3.1.1.min.js")
+	script(src="/js/materialize.min.js")
+	script(src="/js/main.js")
+
+
+
+
+
+
+
+
+
+
+
+		
