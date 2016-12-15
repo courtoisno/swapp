@@ -28,13 +28,16 @@ db.User = db.conn.define ('user', {
 	},
 	email: sequelize.STRING,
 	firstname: sequelize.STRING,
-	lastname: sequelize.STRING
+	lastname: sequelize.STRING,
+	profilepic: sequelize.STRING
 })
 
 //table for posts : title + body ---> connect to userID
 db.Offer = db.conn.define('Offer', {
 	title: sequelize.STRING,
-	about: sequelize.STRING
+	about: sequelize.STRING,
+	condition: sequelize.STRING,
+	picture: sequelize.STRING
 })
 
 //table for comments --> Connect to post and user Id

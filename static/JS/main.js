@@ -6,37 +6,31 @@
   $('#textarea1').trigger('autoresize');
 
 
-  // $('.del-offer').on('click', function (event) {
-  // 	console.log(this)
-  // 	console.log(event.target)
+  $('.del-offer').on('click', function (event) {
+  	console.log(this.id)
+  	console.log(event.target.id)
 
-  // 	if(confirm('delete offer?')){
+  	if(confirm('delete offer?')){
 
-  // 		$.post('/delete', function(response){
-		// 	console.log('deleting offer');
-		// 	window.location.href='/profile';
-  // 		})
-  // 	}
-  // })
-
- $('.del-offer').on('click', function () {
-    var id= $(this).data('id');
-    var url = '/delete/' + id;
-    if(confirm('delete offer?')){
-
-      $.ajax({
-        url: url,
-        type: 'DELETE',
-        success: function(result){
-          console.log('deleting offer');
-          window.location.href='/';
-        },
-        error:function(err){
-          console.log(err)
-        }
-      })
-    }
+  		$.post('/delete', { theid: this.id },function(response){
+			console.log('deleting offer');
+			window.location.href='/profile';
+  		})
+  	}
   })
+
+$(document).on('click', 'a.smoothScroll', function(event){
+    event.preventDefault();
+
+
+  $('html, body').animate({
+    scrollTop: $( $.attr(this, 'href') ).offset().top
+  }, 1000);
+});
+
+
+
+ 
 
   });
       

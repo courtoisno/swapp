@@ -12,3 +12,116 @@
 .icon-block .material-icons {
 	font-size: inherit;
 }
+
+
+@media only screen and (min-width: 993px)
+.container {
+    width: 90%;
+}
+.gridi{
+    height: 340px;
+}
+
+.items{
+padding-left: 15px;
+    padding-top: 15px;
+    font-weight: 500;
+    text-decoration: underline;
+    font-size: 15px;
+}
+
+
+.fake-borders {
+    background-color: #000;
+    padding-bottom: 2px;
+}
+
+.theoffers{
+	    background-color: white;
+    height: 340px;
+    margin-top: -10px;
+    /* margin-bottom: 0px; */
+    margin-left: -10;
+    margin-right: -7px;
+    }
+
+.btn2{
+	box-shadow: none;
+    font-weight: 600;
+    font-size: 50px;
+    padding-left: 10;
+    padding-right: 10;
+}
+
+.buttonpost{
+		display: block;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+img{
+	max-width:100%;
+max-height:100%;
+}
+
+
+/* ------------------------ titles ------------------------ */
+
+.titleIndex{
+	font-size: 200px;
+}
+h1.strech {
+    -webkit-transform:scale(1,2); /* Safari and Chrome */
+    -moz-transform:scale(1,2); /* Firefox */
+    -ms-transform:scale(1,2); /* IE 9 */
+    -o-transform:scale(1,2); /* Opera */
+    transform:scale(1,2); /* W3C */
+}
+
+/* ------------------------ Forms ------------------------ */
+
+/* label color */
+   .input-field label {
+     color: black;
+   }
+   /* label focus color */
+   .input-field input[type=text]:focus + label {
+     color: black;
+   }
+   /* label underline focus color */
+   .input-field input[type=text]:focus {
+     border-bottom: 3px solid black;
+     box-shadow: 0 3px 0 0 black;
+   }
+   /* valid color */
+   .input-field input[type=text].valid {
+     border-bottom: 3px solid black;
+     box-shadow: 0 3px 0 0 black;
+   }
+   /* invalid color */
+   .input-field input[type=text].invalid {
+     border-bottom: 3px solid black;
+     box-shadow: 0 3px 0 0 black;
+   }
+   /* icon prefix focus color */
+   .input-field .prefix.active {
+     color: #000;
+   }
+
+   input[type=text]{
+   border-bottom: 3px solid black
+   }
+
+    input[type=password]{
+   border-bottom: 3px solid black
+   }
+
+    /* label underline focus color */
+   .input-field input[type=password]:focus {
+     border-bottom: 3px solid black;
+     box-shadow: 0 3px 0 0 black;
+   }
+
+   .main{
+   	border-bottom: 5px solid black;
+   }

@@ -6,6 +6,8 @@ const bodyParser = 	 require ('body-parser');
 const session =		 require ('express-session');
 const bcrypt = require('bcrypt');
 const router = express.Router ();
+var multer  = require('multer')
+var upload = multer({ dest: __dirname + '/../static/uploads/' })
 
 // Import database
 const db = require ('../modules/database')
@@ -39,7 +41,7 @@ router.get('/profile', (req, res) => {
 	if (user === undefined) {
 		res.redirect('/?message=' + encodeURIComponent("Please log in to view your profile."));
 	} 
-	//Search for the user and include their offers and include their zqnts qnd offers
+	//Search for the user and include their offers and include their wants and offers
 	db.User.findOne ({	
 		where: { username: user.username },
 		include: [ { 
@@ -184,7 +186,8 @@ router.post('/offering', bodyParser.urlencoded({extended: true}), (req,res) =>{
 	}).then( user => {
 		user.createOffer({
 			title: req.body.title,
-			about: req.body.about
+			about: req.body.about,
+			condition: req.body.condition
 		})
 	}).then( () =>{
 		res.redirect('/')
@@ -192,21 +195,21 @@ router.post('/offering', bodyParser.urlencoded({extended: true}), (req,res) =>{
 });
 
 
-////////////++++++++ DELETE THE OFFER FROM DB ++++++++++//////////
-router.post('/delete', (req, res) =>{
+//////////++++++++ DELETE THE OFFER FROM DB ++++++++++//////////
+router.post('/delete', bodyParser.urlencoded({extended: true}), (req, res) =>{
 	var user= req.session.user;
 	db.User.findOne({
 		where: {username: user.username}
 	}).then( user => {
+		console.log(user)
 		db.Offer.destroy({
 			where: {
-				offerId: offer.id
+				id: req.body.theid
 			}
 		}).then(()=>{
 			res.send('yayyy')
 		})
 	})
-
 })
 
 
@@ -232,6 +235,80 @@ router.get('/wants', bodyParser.urlencoded({extended: true}), (req,res) =>{
 		})
 		
 	})
+
+////////////////// ROUTE for MATCHES ////////////////
+
+router.get('/matches', bodyParser.urlencoded({extended: true}), (req,res) =>{
+	var user= req.session.user;
+	if (!user) res.send('NOT LOGGED IN')
+	db.Want.findAll({
+		where:{
+			userId: user.id
+		},
+		include:[{
+			// Ours
+			model: db.Offer,
+			include:[{
+				// Them
+				model: db.User,
+				include:[{
+					// Theirs
+					model: db.Want,
+					include:[{
+						// Ours?
+						model: db.Offer,
+						include:[{
+							// Us?
+							model: db.User,
+							where: {
+								id: user.id
+							}
+						}]
+					}]
+				}]
+			}]
+		}]
+	}).then( mymatches =>{
+		res.send( mymatches )
+	})		
+})
+
+
+
+// include: [ { 
+// 			model: db.Offer,
+// 			include : [ 
+// 				{ model: db.Want,
+// 				include: [db.Offer]
+// 			}]
+// 		},
+// 		{
+// 			model: db.Want,
+// 			include : [ db.Offer ]
+// 		}
+
+
+// where: { username: user.username },
+// 		include: [ { 
+// 			model: db.Offer,
+// 			include : [ 
+// 				{ model: db.Want,
+// 				include: [db.Offer]
+// 			}]
+
+
+router.post('/upl', upload.any(), (req,res) =>{
+	var user = req.session.user;
+	if (user === undefined) {
+		res.redirect ('/?message=' + encodeURIComponent ("Please log in to view your profile.") );
+	}
+})
+
+
+// offer.findone 
+// 	where 
+// 	id= offer.id
+// Offer.update
 
 
 // if (user === undefined) {
@@ -262,10 +339,9 @@ router.get('/logout', function (req, res) {
 
 
 ////////HANDLEING FILES UPLOAD
-router.post('/file-upload', function(req, res, next) {
-    console.log(req.body);
-    console.log(req.files);
-});
+// router.get('/upl', function(req, res, next) {
+// 	res.send('pllll workd')
+// });
 
 
 

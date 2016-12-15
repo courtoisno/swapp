@@ -61,7 +61,8 @@ db.conn.sync ( { force: false } ).then ( synced => {
 	}).then( user => {
 		user.createOffer ( {
 			title: "Coffee machine",
-			about: "Fantastic coffee machine, perfect condition and fantastic coffee. Probably the best on earth."
+			about: "Fantastic coffee machine, perfect condition and fantastic coffee. Probably the best on earth.",
+			picture:"963f0a58cb0a8abc0f6a83555ba84af6"
 		}).then( offer => {
 			user.createWant( { } ).then ( want => {
 				want.setOffer ( offer )

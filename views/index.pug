@@ -9,8 +9,8 @@ html
 	body
 	
 		if user	
-			nav(class="light-blue lighten-1" role="navigation")
-				div(class="nav-wrapper container")
+			nav(class="transparent" role="navigation")
+				div(class="nav-wrapper container black-text" )
 					span Index!
 					ul(class="right hide-on-med-and-down")
 							
@@ -25,69 +25,73 @@ html
 			div(class="section no-pad-bot" id="index-banner")
 				div(class="container")
 				<br> <br>
-				h1(class="header center black-text") Swapp it all.
-				div(class="row center")
-					h5(class="header col s12 light") A useful app to swap what you're not using anymore. If you both swapped, you get a match!
-				div(class="row center")
-					a(href="#" id="download-button" class="btn-large waves-effect waves-light orange")
-						span Let's go!
-			div(class="container")
-				div(class="section")
+				h1(id="hello" class="center-align") Hello, #{user.username}! <br>
 
-					div(class="row")
+			div(class="main")
 
-						span(id="hello") Hello, #{user.username}! <br>
+				div(class="col s12")
+					div(class="section")
 
-						each offer in offers
-							p #{offer.title}: 
-							p #{offer.about}
-							form(class="buttonpost" action="/wants" method="post")
-								input(name='theOffer' value= offer.id, hidden)
-								button(name="iWant" value="I want this") I Want this!
-			footer(class="page-footer orange")
+						div(class="row")
+
+							each offer in offers
+
+								div(class="col s4 gridii")
+									div(class="theoffers")
+										p(class="left-align items") #{offer.title}:
+										p #{offer.about} #{offer.condition}
+										img(src="/images/9k.jpg")
+										div(class="valign")
+											form(class="buttonpost" action="/wants" method="post")
+												input(name='theOffer' value= offer.id, hidden)
+												button(name="iWant" value="I want this" class="btn-large waves-effect waves-light  green accent-3 black-text btn2 center-align") WANT
+											
+
+
+			footer(class="page-footer transparent")
 				div(class="container")
 					div(class="row")
 						div(class="col l6 s12")
-							h5(class="white-text") Company Bio
+							h5(class="black-text") Company Bio
 							p Lorem ipsum dolor sit amet, consectetur adipiscing elit. Ut bibendum quam metus, ac iaculis ligula dignissim eu. Vestibulum vitae justo in metus efficitur rhoncus at at metus. Sed a vehicula lectus. Phasellus maximus nisl sit amet augue porta molestie. Mauris porta fermentum mi.
 						div(class="col l3 s12")
 							ul
-								li(class="white-text") New Zealand: 0800 61 62 63 <br>International: +64 9 379 7513
-								li(class="white-text") info-creative@auckland.ac.nz <br>Faculty of Creative Arts and Industries <br> Student Centre 
-								li(class="white-text") © 2016 The University of Auckland <br>All Rights Reserved
+								li(class="black-text-text") New Zealand: 0800 61 62 63 <br>International: +64 9 379 7513
+								li(class="black-text") info-creative@auckland.ac.nz <br>Faculty of Creative Arts and Industries <br> Student Centre 
+								li(class="black-text") © 2016 The University of Auckland <br>All Rights Reserved
 						div(class="col l3 s12")
 							ul
-								li(class="white-text")
+								li(class="black-text")
 									a(href="#!")
 										span Link1
-								li(class="white-text")
+								li(class="black-text")
 									a(href="#!")
 										span Link1
-								li(class="white-text")
+								li(class="black-text")
 									a(href="#!")
 										span Link1									
 		else
-			nav(class="light-blue lighten-1" role="navigation")
-				div(class="nav-wrapper container")
+			nav(class="transparent" role="navigation")
+				div(class="nav-wrapper container black-text" )
 					span Index!
-					ul(class="right hide-on-med-and-down")
+					ul(class="right hide-on-med-and-down" )
 							
 						li
 							a(href='/profile')
-								span profile
+								span(class="black-text") profile
 						li 
 							a(href="/logout")
-								span log out
+								span(class="black-text") log out
 		
 					
 			div(class="section no-pad-bot" id="index-banner")
 				div(class="container")
 				<br> <br>
-				h1(class="header center black-text") Swapp it all.
+				h1(class="header center black-text titleIndex strech") SWAPP!
 				div(class="row center")
 					h5(class="header col s12 light") A useful app to swap what you're not using anymore. If you both swapped, you get a match!
 				div(class="row center")
-					a(href="#" id="download-button" class="btn-large waves-effect waves-light orange")
+					a(href="#linkScroll" id="download-button" class="btn-large waves-effect waves-light orange smoothScroll")
 						span Let's go!
 
 			div(class="container")
@@ -112,58 +116,61 @@ html
 								h5(class="center") Easy
 								p(class="light")  ligula dignissim eu. Vestibulum vitae justo in metus efficitur rhoncus at at metus. Sed a vehicula lectus. Phasellus maximus nisl sit amet augue porta molestie. Mauris porta fermentum mi
 
-
+			div(class="main")
 				div(class="container")
-					div(class="section")
+					div(class="section" id="linkScroll")
 
-						h1 index héhé
-						form(class="form1" method='POST' action='/login')
-							span Username <br>
-								input(class="username" name='username' type='text' required)
-							span Password <br>
-								input(class="password" name='password' type='password' required)
-							p 
-								input(type='submit' value='Login' class='call_back_btn' required)
+						div(class="row")
+							div(class="col l6 s6 input-field")
+								h2(class="center-align") Log in
+								form(class="form1" method='POST' action='/login')
+									span Username <br>
+										input(class="username" name='username' type='text' required)
+									span Password <br>
+										input(class="password" name='password' type='password' required)
+									p 
+										input(type='submit' value='Login' class='call_back_btn' required)
 
+							div(class="col l6 s6 input-field")
+								h2(class="center-align") Register 
+								form(method='POST' action='/newlog')
 
-						form(method='POST' action='/newlog')
+									p New username: <br>
+										input(name='name' type='text' required)
+									p New password: <br>
+										input(name='pass' type='password' required)
+									p Your email: <br>
+										input(name='mail' type='text' required)
+									p Email again: <br>
+										input(name='mail2' type='text' required)
+									p First Name
+										input(name='firstname' type='text' required)
+									p Last Name
+										input(name='lastname' type='text' required)
+												
+									p 
+										input(type='submit' value='login' id='submit')
 
-							p New username: <br>
-								input(name='name' type='text' required)
-							p New password: <br>
-								input(name='pass' type='password' required)
-							p Your email: <br>
-								input(name='mail' type='text' required)
-							p Email again: <br>
-								input(name='mail2' type='text' required)
-							p First Name
-								input(name='firstname' type='text' required)
-							p Last Name
-								input(name='lastname' type='text' required)
-										
-							p 
-								input(type='submit' value='login' id='submit')
-
-			footer(class="page-footer orange")
+			footer(class="page-footer transparent")
 				div(class="container")
 					div(class="row")
 						div(class="col l6 s12")
-							h5(class="white-text") Company Bio
+							h5(class="black-text") Company Bio
 							p Lorem ipsum dolor sit amet, consectetur adipiscing elit. Ut bibendum quam metus, ac iaculis ligula dignissim eu. Vestibulum vitae justo in metus efficitur rhoncus at at metus. Sed a vehicula lectus. Phasellus maximus nisl sit amet augue porta molestie. Mauris porta fermentum mi.
 						div(class="col l3 s12")
 							ul
-								li(class="white-text") New Zealand: 0800 61 62 63 <br>International: +64 9 379 7513
-								li(class="white-text") info-creative@auckland.ac.nz <br>Faculty of Creative Arts and Industries <br> Student Centre 
-								li(class="white-text") © 2016 The University of Auckland <br>All Rights Reserved
+								li(class="black-text-text") New Zealand: 0800 61 62 63 <br>International: +64 9 379 7513
+								li(class="black-text") info-creative@auckland.ac.nz <br>Faculty of Creative Arts and Industries <br> Student Centre 
+								li(class="black-text") © 2016 The University of Auckland <br>All Rights Reserved
 						div(class="col l3 s12")
 							ul
-								li(class="white-text")
+								li(class="black-text")
 									a(href="#!")
 										span Link1
-								li(class="white-text")
+								li(class="black-text")
 									a(href="#!")
 										span Link1
-								li(class="white-text")
+								li(class="black-text")
 									a(href="#!")
 										span Link1		
 

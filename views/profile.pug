@@ -24,6 +24,11 @@ html
 				p #{user.email} 
 				p #{user.firstname} #{user.lastname}
 
+			
+
+				h2 Matches
+				p
+
 				h2 My wishlist
 				if user.Wants
 					each want in user.Wants
@@ -41,8 +46,9 @@ html
 						div(class="offer")
 							p #{offer.title}:
 							p #{offer.about}
+							p #{offer.condition} condition
 							div(class="waves-effect waves-teal btn-flat") Edit
-							div(class="waves-effect waves-teal btn-flat del-offer" data-id="{id}") Delete
+							div(class="waves-effect waves-teal btn-flat del-offer" id=offer.id) Delete
 
 
 
@@ -58,17 +64,20 @@ html
 							div(class="input-field col s12")
 						label(for="textarea1") About: <br>
 							textarea(id="textarea1" class="materialize-textarea" name='about' type='password' required)
-							input(type='submit' required)
+						div(class="row")
+							div(class="input-field col s12")
+						label(for="condition" class="active") Condition:
+							input(id="condition" value="Good - moderate - bad" class="validate" name='condition' type='text' required)
 
-					form(method='post' enctype action="/file-upload")
-						div(class="file-field input-field")
-							div(class="btn")
-								span Pics
-								input(type="file" multiple name="pic" accept="image/*")
-						div(class="file-path-wrapper")
-							input(class="file-path validate" type="text" placeholder="upload one or more images")
-						div(class="btn")
-								span Pics	
+						form(class="col s12" method='POST' action='/upl' enctype="multipart/form-data")
+							div(class="file-field input-field")
+								p(class="btn") Pics
+								input(type="file" name="myimage"  )
+								div(class="file-path-wrapper")
+									input(class="file-path validate" type="text" placeholder="upload one or more images")
+						
+						input(type='submit' required)
+					
 								
 
 
